@@ -18,8 +18,8 @@ mungeFourToSixBitBin bs = (B.pack . reverse . flatten) (
     map fourBitTripleToSixBitPair (toTriples . B.reverse $ bs))
 
 fourBitTripleToSixBitPair :: (Word8, Word8, Word8) -> (Word8, Word8)
-fourBitTripleToSixBitPair (x, y, z) = (x * 4 + getTwoBits y 2,
-                                       16 * (getTwoBits y 0) + z)
+fourBitTripleToSixBitPair (x, y, z) = (x + 16 * (getTwoBits y 0),
+                                       (getTwoBits y 2) + z * 4)
 
 flatten :: [(a, a)] -> [a]
 flatten []          = []
